@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50, 60, 70}; // Example array
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    if (size >= 5) {
+        printf("The 5th iterated element is: %d\n", arr[4]); // Index 4 = 5th element
+    } else {
+        printf("Array has less than 5 elements.\n");
+    }
+
+    return 0;
+}
