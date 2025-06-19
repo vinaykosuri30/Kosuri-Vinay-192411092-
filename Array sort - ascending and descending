@@ -1,14 +1,41 @@
 #include <stdio.h>
-#include <stdlib.h>
-int compare(const void *a, const void *b) {
-    return (*(int*)a - *(int*)b);
+void sortAscending(int arr[], int n) {
+    for(int i = 0; i < n-1; i++) {
+        for(int j = i+1; j < n; j++) {
+            if(arr[i] > arr[j]) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+void sortDescending(int arr[], int n) {
+    for(int i = 0; i < n-1; i++) {
+        for(int j = i+1; j < n; j++) {
+            if(arr[i] < arr[j]) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+void printArray(int arr[], int n) {
+    for(int i = 0; i < n; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
 }
 int main() {
-    int arr[] = {5, 2, 9, 1, 5, 6};
-    size_t arr_size = sizeof(arr) / sizeof(arr[0]);
-    qsort(arr, arr_size, sizeof(int), compare);
-    for (size_t i = 0; i < arr_size; i++) {
-        printf("%d ", arr[i]);
-    }
+    int arr[] = {5, 2, 9, 1, 7};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    printf("Original Array: ");
+    printArray(arr, n);
+    sortAscending(arr, n);
+    printf("Sorted in Ascending Order: ");
+    printArray(arr, n);
+    sortDescending(arr, n);
+    printf("Sorted in Descending Order: ");
+    printArray(arr, n);
     return 0;
 }
