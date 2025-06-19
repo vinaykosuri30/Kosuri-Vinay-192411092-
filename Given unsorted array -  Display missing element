@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+int compare(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+void displayMissingElements(int arr[], int size) {
+    int min = arr[0], max = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < min) min = arr[i];
+        if (arr[i] > max) max = arr[i];
+    }
+    int range = max - min + 1;
+    int presence[range];
+    for (int i = 0; i < range; i++) presence[i] = 0;
+    for (int i = 0; i < size; i++)
+        presence[arr[i] - min] = 1;
+    printf("Missing elements: ");
+    for (int i = 0; i < range; i++) {
+        if (presence[i] == 0)
+            printf("%d ", i + min);
+    }
+    printf("\n");
+}
+int main() {
+    int arr[] = {4, 2, 7, 1, 9, 5}; // Example array
+    int size = sizeof(arr) / sizeof(arr[0]);
+    displayMissingElements(arr, size);
+    qsort(arr, size, sizeof(int), compare);
+    printf("Sorted array: ");
+    for (int i = 0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+    if (size >= 5)
+        printf("5th iterated element: %d\n", arr[4]);
+    else
+        printf("Array has less than 5 elements.\n");
+    return 0;
+}
