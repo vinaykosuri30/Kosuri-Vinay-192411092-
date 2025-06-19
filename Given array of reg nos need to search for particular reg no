@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+int searchRegNo(char regNos[][10], int size, const char *target) {
+    for (int i = 0; i < size; i++) {
+        if (strcmp(regNos[i], target) == 0) {
+            return i; // Return the index if found
+        }
+    }
+    return -1; // Return -1 if not found
+}
+int main() {
+    char regNos[MAX_REG_NUMS][10] = {"ABC123", "XYZ456", "LMN789"};
+    const char *target = "XYZ456";
+    int index = searchRegNo(regNos, 3, target);
+    if (index != -1) {
+        printf("Registration number found at index: %d\n", index);
+    } else {
+        printf("Registration number not found.\n");
+    }
+    return 0;
+}
